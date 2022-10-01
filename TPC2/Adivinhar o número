@@ -1,0 +1,43 @@
+import random
+print("Escolha o modo de jogo:")
+mod = input("1- Adivinhar o número; 2 - O computador adivinha o número.")
+tent = 1
+if(mod=="1"):
+    x = random. randint(0,100)
+    print("Pensei num número entre 0 e 100. Tente adivinhar.")
+    num = int(input("Resposta:"))
+    while(num!=x):
+        if(num>x):
+            print("O número que pensei é menor.")
+        if(num<x):
+            print("O número que pensei é maior.")
+            
+        num = int(input("Resposta:"))
+        tent = tent + 1 
+    if(num==x):
+        print("Acertou!")
+        print("O número de tentativas foi ",tent,".")
+
+if(mod=="2"):
+    min = 0
+    max = 100
+    print("Pense em um número entre 0 e 100.")
+    x = random. randint(0,100)
+    print("O número que pensou foi o ",x,"?")
+    N = input("Responda Sim, Maior ou Menor: ")
+    while (N!="Sim"):
+        if (N=="Maior"):
+            min = x
+            x = int((max+min)/2)
+            print("O número que pensou foi o ",x,"?")
+            N = input("Responda Sim, Maior ou Menor: ")
+            tent = tent + 1
+        if (N=="Menor"):
+            max = x
+            x = int((max+min)/2)
+            print("O número que pensou foi o ",x,"?")
+            N = input("Responda Sim, Maior ou Menor: ")
+            tent = tent + 1
+    if (N=="Sim"):
+        print("Fim do jogo!")
+        print("O número de tentativas foi ", tent,".")
