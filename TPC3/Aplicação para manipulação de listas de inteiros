@@ -1,0 +1,123 @@
+def soma(lista):
+    soma=0
+    for i in lista:
+        soma = soma + i
+    return soma
+
+def media(lista):
+    soma=0
+    for i in lista:
+        soma = soma + i
+    return soma/len(lista)
+
+def maior(lista):
+    maior = lista[0]
+    for i in lista[1:]:
+        if(i>maior):
+            maior = i
+    return maior
+
+def menor(lista):
+    menor = lista[0]
+    for i in lista[1:]:
+        if(i<menor):
+            menor = i
+    return menor
+
+menu = ("""->Menu:
+    * (1) Criar Lista 
+    * (2) Ler Lista
+    * (3) Soma
+    * (4) Média
+    * (5) Maior
+    * (6) Menor
+    * (7) Está ordenada por ordem crescente?
+    * (8) Está ordenada por ordem decrescente?
+    * (9) Procura um elemento
+    * (0) Sair""")
+import random
+opção = "-1"
+lista=[]
+N=0
+while (opção !="0"):
+    print(menu)
+    opção = input("Escolha uma opção: ")
+
+    if(opção == "1"):
+        print("Escolheu a opção (1).")
+        N = int(input("Introduza o número de elementos da lista que pretende: "))
+        i = 0
+        while(i<N):
+            num = random.randrange(0,101)
+            lista.append(num)
+            i = i+1 
+        print("Lista criada: ", lista)
+    
+    if(opção == "2"):
+        print("Escolheu a opção (2).")
+        N = int(input("Introduza o número de elementos da lista que pretende: "))
+        i = 0
+        while(i<N):
+            num = int(input("Introduza um número: "))
+            lista.append(num)
+            i = i+1 
+        print("Lista criada: ", lista)
+    if(N==0):
+        print("A lista está vazia.")
+    else:  
+        if(opção == "3"):
+            print("Escolheu a opção (3)")
+            soma=soma(lista)
+            print("A soma dos elementos da lista é ",soma)
+
+        if(opção == "4"):
+            print("Escolheu a opção (4)")
+            media=media(lista)
+            print("A média dos elementos da lista é ",media)
+
+        if(opção == "5"):
+            print("Escolheu a opção (5)")
+            maior=maior(lista)
+            print("O maior número da lista é ",maior)
+
+        if(opção == "6"):
+            print("Escolheu a opção (6)")
+            menor=menor(lista)
+            print("O menor número da lista é ",menor)    
+
+        if(opção == "7"):
+            print("Escolheu a opção (7)")
+            maior = lista[0]
+            while(maior == i):
+                for i in lista[1:]:
+                    if(i>=maior):
+                        maior = i
+            if (maior == lista[-1]):
+                print("Sim, a lista está ordenada por ordem crescente.")
+            else:
+                print("Não, a lista não está ordenada por ordem crescente.")    
+
+        if(opção == "8"):
+            print("Escolheu a opção (8)")
+            menor = lista[0]
+            while(menor == i):
+                for i in lista[1:]:
+                    if(i<=menor):
+                        menor = i
+            if (menor == lista[-1]):
+                print("Sim, a lista está ordenada por ordem decrescente.")
+            else:
+                print("Não, a lista não está ordenada por ordem decrescente.")
+    
+        if (opção == "9"):
+            print("Escolheu a opção (9).")
+            elemento = int(input("Introduza o elemento que procura: "))
+            posição = 0
+            for i in lista:
+                if(i == elemento):
+                    print("O número ",elemento," encontra-se na lista na posição ",posição,".")
+                posição = posição + 1
+            if elemento not in lista:
+                print("O número ",elemento," não se encontra na lista.")   
+                
+print("Lista guardada: ",lista)
