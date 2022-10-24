@@ -1,0 +1,119 @@
+def lerficheiro(file):
+    ListaPacientes=[]
+    file1 = open(file)
+    file1.readline()
+    for linha in file1:
+        dados = linha.split(",")
+        dado5 = dados[5].split("\n")
+        paciente = (int(dados[0]),dados[1],dados[2],int(dados[3]),dados[4],dado5[0])
+        ListaPacientes.append(paciente)
+    file1.close()
+    print(ListaPacientes)
+    print(type(dados[0]))
+    print(dados[0])
+    return ListaPacientes
+
+def distribSexo(ListaPacientes):
+    dic = {}
+    for paciente in ListaPacientes:
+        idade,sexo,tensão,colesterol,batimento,temDoença = paciente
+        if temDoença =="1" and sexo in dic:
+            dic[sexo] = dic[sexo] + 1
+        elif temDoença =="1" and sexo not in dic:
+            dic[sexo] = 1
+    return dic
+
+def tabelaSexo(ListaPacientes):
+    distribuição = distribSexo(ListaPacientes)
+    print("Sexo Masculino | ",distribuição["M"])
+    print("Sexo Feminino  | ",distribuição["F"])
+    return
+
+def distribIdade(ListaPacientes):
+    dic = {}
+    for paciente in ListaPacientes:
+        idade,sexo,tensão,colesterol,batimento,temDoença = paciente
+        if temDoença =="1" and idade in dic:
+            dic[idade]=dic[idade]+1
+        elif temDoença =="1" and idade not in dic:
+            dic[idade]= 1
+    return dic 
+
+def tabelaIdades(ListaPacientes):
+    distribuição = distribIdade(ListaPacientes)
+    idades = list(distribuição.keys())
+    idades.sort()
+    i = 0
+    while i <= idades[-1]:
+        doentes = 0
+        for num in range(0,5):
+            doentes = doentes + distribuição.get(i+num, 0)
+        if doentes != 0:
+            print(f"[{i}-{i+4}] | {doentes}")
+        i = i + 5
+    return
+
+def distribColesterol(ListaPacientes):
+    dic ={}
+    for paciente in ListaPacientes:
+        idade,sexo,tensão,colesterol,batimento,temDoença = paciente
+        if temDoença =="1" and colesterol in dic:
+            dic[colesterol]=dic[colesterol]+1
+        elif temDoença =="1" and colesterol not in dic:
+            dic[colesterol]=1
+    return dic
+
+def tabelaColesterol(ListaPacientes):
+    distribuição = distribColesterol(ListaPacientes)
+    niveis = list(distribuição.keys())
+    niveis.sort()
+    i = 0
+    while i<=niveis[-1]:
+        doentes = 0
+        for num in range(0,30):
+            doentes = doentes + distribuição.get(i+num,0)
+        if doentes != 0:
+            print(f'[{i}-{i+29}] | {doentes}')
+        i = i + 30
+    return
+
+def menu():
+    print("""
+                Menu:
+                    (1)-> Ver lista de pacientes.
+                    (2)-> Ver tabela de distribuição da doença por sexo.
+                    (3)-> Ver tabela de distribuição da doença por faixas etárias.
+                    (4)-> Ver tabela de distribuição da deonça por níveis de colesterol.
+                    (0)-> Sair
+                    
+                    Escolha uma das opções anteriores.""")
+    return 
+
+opção = -1
+print("DOENÇA CARDÍACA: ANÁLISE DE DADOS DE PACIENTES")
+Listapacientes = lerficheiro("myheart.csv")
+while opção != 0:
+    menu()
+    opção=int(input("Escolha uma opção: "))
+
+    if opção==1:
+        print("""----------------------------------------------------
+        Lista de Pacientes Completa:
+                            """)
+        lerficheiro("myheart.csv")
+    elif opção==2:
+        print("""----------------------------------------------------
+        Tabela de distribuição da doença por sexo:
+                            """)
+        tabelaSexo(Listapacientes)
+    elif opção==3:
+        print("""----------------------------------------------------
+        Tabela de distribuição da doença por faixas etárias: 
+                            """)
+        tabelaIdades(Listapacientes)
+    elif opção==4:
+        print("""----------------------------------------------------
+        Tabela de distribuição da doença por níveis de colesterol:
+                            """)
+        tabelaColesterol(Listapacientes)
+print("Fim do programa.")
