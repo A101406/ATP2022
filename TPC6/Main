@@ -1,0 +1,4 @@
+import AulaTP6
+obras = AulaTP6.lerObras("../Datasets/obras.csv")
+
+AulaTP6.menu(obras)
