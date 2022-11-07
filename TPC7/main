@@ -1,0 +1,7 @@
+import TPC7Functions as TPC7
+
+alunos = TPC7.lerAlunos("../Datasets/alunos.csv")
+alunos_novo = TPC7.mediaNotas(alunos)
+listaAlunos = TPC7.escaloesNotas(alunos_novo)
+
+TPC7.menu(alunos,alunos_novo,listaAlunos)
